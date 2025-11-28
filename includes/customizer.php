@@ -1,7 +1,4 @@
 <?php
-/**
- * Funciones y clases para la personalización del tema (Customizer).
- */
 
 // =======================================
 // CLASE REPETIDOR: PERSONALIZADA Y DINÁMICA
