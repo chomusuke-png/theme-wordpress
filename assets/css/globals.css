@@ -9,7 +9,7 @@ body {
 /* ==================== */
 .hero-slider {
     width: 100%;
-    height: 500px; /* Altura del carrusel */
+    height: 400px; /* Altura del carrusel */
     position: relative;
 }
 
