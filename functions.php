@@ -80,32 +80,6 @@ function theme_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
 
-
-function import_asset(string $file_name, string $type): void
-{
-    $base_path = get_template_directory() . '/assets/'; 
-    
-    switch (strtolower($type)) {
-        case 'css':
-            break;
-
-        case 'inc':
-            $folder = 'inc/';
-            $full_path = $base_path . $folder . $file_name;
-            
-            if (file_exists($full_path)) {
-                include_once $full_path; 
-            } else {
-                echo "";
-            }
-            break;
-
-        default:
-            echo "";
-            break;
-    }
-}
-
 require_once get_template_directory() . '/includes/customizer.php';
 ?>
 
