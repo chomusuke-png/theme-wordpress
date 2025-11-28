@@ -2,23 +2,23 @@
     <div class="footer-container">
 
         <!-- FOOTER WIDGETS -->
-        <?php if (is_active_sidebar('footer_1') || is_active_sidebar('footer_2') || is_active_sidebar('footer_3')): ?>
+        <?php if (is_active_sidebar('footer-widget-1') || is_active_sidebar('footer-widget-2') || is_active_sidebar('footer-widget-3')): ?>
             <div class="footer-widgets">
                 <div class="footer-column">
-                    <?php if (is_active_sidebar('footer_1')): ?>
-                        <?php dynamic_sidebar('footer_1'); ?>
+                    <?php if (is_active_sidebar('footer-widget-1')): ?>
+                        <?php dynamic_sidebar('footer-widget-1'); ?>
                     <?php endif; ?>
                 </div>
 
                 <div class="footer-column">
-                    <?php if (is_active_sidebar('footer_2')): ?>
-                        <?php dynamic_sidebar('footer_2'); ?>
+                    <?php if (is_active_sidebar('footer-widget-2')): ?>
+                        <?php dynamic_sidebar('footer-widget-2'); ?>
                     <?php endif; ?>
                 </div>
 
                 <div class="footer-column">
-                    <?php if (is_active_sidebar('footer_3')): ?>
-                        <?php dynamic_sidebar('footer_3'); ?>
+                    <?php if (is_active_sidebar('footer-widget-3')): ?>
+                        <?php dynamic_sidebar('footer-widget-3'); ?>
                     <?php endif; ?>
                 </div>
             </div>
