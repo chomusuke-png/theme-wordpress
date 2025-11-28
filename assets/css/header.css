@@ -1,0 +1,84 @@
+/* ============================= */
+/*      HEADER PRINCIPAL         */
+/* ============================= */
+.main-header {
+    background-color: #ffffff;
+    color: #947e1e;
+    padding: 15px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1000;
+}
+
+/* LOGO */
+.custom-logo {
+    height: 90px !important;
+    width: auto;
+}
+
+/* CONTACTO ESTILO CÍRCULO */
+.header-right .contact {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header-right .contact a {
+    background-color: #947e1e;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    transition: background 0.3s ease;
+}
+
+.header-right .contact a:hover {
+    background-color: #5e5013;
+}
+
+/* HAMBURGER BUTTON */
+.hamburger {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #947e1e;
+}
+
+/* MOBILE MENU */
+.mobile-menu {
+    display: none;
+    background: white;
+    border-top: 2px solid #947e1e;
+    padding: 15px 20px;
+}
+
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-menu ul li {
+    margin-bottom: 12px;
+}
+
+.mobile-menu ul li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar { display: none; }
+    .hamburger { display: block; }
+    .custom-logo { height: 70px !important; }
+    .main-header { padding: 10px 20px; }
+}

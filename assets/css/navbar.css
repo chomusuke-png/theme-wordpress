@@ -1,0 +1,136 @@
+/* ============================= */
+/*       NAVBAR PRINCIPAL        */
+/* ============================= */
+
+.navbar {
+    background-color: #947e1e;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    justify-content: space-around; 
+    position: relative;
+}
+
+.navbar li {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-grow: 1; 
+    max-width: none; 
+    justify-content: center;
+    transition: border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar li:hover {
+    border-bottom: 2px solid white;
+}
+
+.navbar a.active, 
+.navbar li.active {
+    border-bottom: 2px solid white; 
+}
+
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 10px 10px; 
+    display: block; 
+    width: 100%; 
+    text-align: center;
+    transition: color 0.3s; 
+    border-bottom: none;
+}
+
+/* ============================= */
+/*       FLECHA INDICADORA       */
+/* ============================= */
+
+.navbar .menu-item-has-children {
+    justify-content: center; 
+    display: flex; 
+}
+
+.navbar .menu-item-has-children>a {
+    margin-right: 5px; 
+    padding-right: 0;
+}
+
+.navbar .menu-item-has-children::after {
+    content: "\f0d7";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.7em;
+    color: white;
+    margin-left: 0; 
+    transition: transform 0.3s ease;
+    align-self: center; 
+}
+
+.navbar li:hover > .menu-item-has-children::after {
+    transform: rotate(180deg);
+}
+
+/* ============================= */
+/*     ESTILOS DEL SUBMENÚ       */
+/* ============================= */
+
+.navbar ul .sub-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; 
+    transform: none; 
+    z-index: 100;
+    background-color: #7b6a18;
+    min-width: 100%;
+    width: 100%;
+    padding: 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    flex-direction: column;
+    text-align: center;
+}
+
+.navbar li:hover>.sub-menu {
+    display: block;
+}
+
+.navbar ul .sub-menu li {
+    margin: 0;
+    padding: 0;
+    position: static;
+    display: block;
+    flex-grow: 0;
+    max-width: none;
+    justify-content: center;
+    border-bottom: none !important; 
+}
+
+.navbar ul .sub-menu li a {
+    padding: 10px 20px;
+    display: block;
+    width: 100%; 
+    text-align: center;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar ul .sub-menu li a:hover {
+    background-color: #5e5013;
+    color: white;
+    border-bottom: 2px solid white; 
+}

@@ -1,0 +1,177 @@
+/* =============== */
+/*    ANIMACIÓN    */
+/* =============== */
+
+@keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* =============== */
+/*      FOOTER     */
+/* =============== */
+
+.footer {
+    background: #947e1e; /* color nuevo */
+    color: white;
+    padding: 50px 20px 30px;
+    margin-top: 80px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+/* LINKS PRINCIPALES */
+.footer-links {
+    margin-bottom: 35px;
+}
+
+.footer-links h3 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-links ul li {
+    margin: 0;
+}
+
+.footer-links a {
+    color: #f4eecf; /* tono claro tipo crema */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.footer-links a:hover {
+    color: white;
+    background: rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* ICONOS */
+.footer-links a i {
+    font-size: 1.1rem;
+}
+
+/* =============== */
+/*    WIDGETS      */
+/* =============== */
+
+.footer-widgets {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.footer-widget {
+    color: #f4eecf;
+}
+
+.footer-widget-title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-widget ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-widget ul li {
+    margin-bottom: 10px;
+}
+
+.footer-widget a {
+    color: #f4eecf;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-widget a:hover {
+    color: white;
+}
+
+/* COPYRIGHT */
+.footer-copy {
+    margin-top: 30px;
+    padding-top: 25px;
+    font-size: 0.9rem;
+    opacity: 0.9;
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* =============== */
+/*   RESPONSIVE    */
+/* =============== */
+
+@media (max-width: 768px) {
+    .footer-links ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-links a {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .footer-widgets {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =============== */
+/* BOTÓN FLOTANTE  */
+/* =============== */
+
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    background-color: #947e1e;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+}
+
+.back-to-top:hover {
+    background-color: #5e5013;
+    transform: scale(1.1);
+}

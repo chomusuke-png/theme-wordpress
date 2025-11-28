@@ -1,0 +1,23 @@
+#btnTop {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #947e1e;
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: none;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+#btnTop:hover {
+    background: #5e5013;
+}
