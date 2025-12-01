@@ -97,6 +97,12 @@ function theme_enqueue_assets()
         filemtime(get_template_directory() . '/assets/css/categories.css')
     );
     wp_enqueue_style(
+        'archive-style',
+        get_template_directory_uri() . '/assets/css/archive.css',
+        array('global-style'),
+        filemtime(get_template_directory() . '/assets/css/archive.css')
+    );
+    wp_enqueue_style(
         'page-style',
         get_template_directory_uri() . '/assets/css/page.css',
         array('global-style'),
