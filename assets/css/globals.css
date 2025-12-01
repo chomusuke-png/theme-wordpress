@@ -1,14 +1,57 @@
 body {
     margin: 0;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; /* Fuente más limpia */
-    background-color: #f4f6f8; /* Gris azulado muy suave, mejor que el gris plano */
-    color: #444;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #faf9f6; /* Blanco perla suave (menos duro que el blanco puro) */
+    color: #444; /* Gris oscuro para texto principal */
+    line-height: 1.6;
 }
 
+/* Titulo sección principal */
 .section-title {
     text-align: center;
     margin: 50px 0 30px;
     font-size: 2.2rem;
-    color: #1e3a52; /* Azul marino */
+    color: #947e1e; /* Color mostaza original */
     font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ================================= */
+/* WIDGETS DEL HOME (NUEVO)         */
+/* ================================= */
+.home-widgets-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Rejilla responsive */
+    gap: 30px;
+}
+
+.home-widget {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03); /* Sombra suave */
+    border: 1px solid #eee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(148, 126, 30, 0.1); /* Sombra mostaza muy sutil */
+    border-color: #947e1e;
+}
+
+.home-widget-title {
+    font-size: 1.2rem;
+    color: #947e1e;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid rgba(148, 126, 30, 0.2);
+    padding-bottom: 10px;
 }

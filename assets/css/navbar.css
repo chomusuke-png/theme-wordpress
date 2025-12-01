@@ -1,17 +1,20 @@
 /* ============================= */
-/*       NAVBAR PRINCIPAL        */
+/* NAVBAR PRINCIPAL        */
 /* ============================= */
 
 .navbar {
-    background-color: #eeda81;
-    color: white;
+    background-color: #ffffff; /* Fondo blanco limpio */
+    border-top: 1px solid #eee; /* Separación sutil del header */
+    border-bottom: 2px solid #947e1e; /* Línea base mostaza */
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: stretch;
     width: 100%;
     position: relative; 
     z-index: 100;       
-    height: 50px;
+    height: 55px; /* Un poco más alto para elegancia */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
 }
 
 .navbar > ul {
@@ -21,54 +24,58 @@
     display: flex;
     width: 100%;
     max-width: 1200px;
-    justify-content: space-around; 
+    justify-content: center; /* Centrado */
+    gap: 30px; /* Espacio entre items */
     align-items: stretch; 
-    position: static; 
 }
 
 .navbar > ul > li {
     margin: 0;
     padding: 0;
-    position: static; 
+    position: relative; /* Cambiado a relative para el submenú */
     display: flex;
     align-items: center;
-    flex-grow: 1; 
-    justify-content: center;
-    transition: background-color 0.3s, border-bottom 0.3s;
+    transition: all 0.3s;
     border-bottom: 2px solid transparent;
 }
 
+/* Hover en items principales */
 .navbar > ul > li:hover {
-    border-bottom: 2px solid black;
-    background-color: rgba(0,0,0,0.02);
+    background-color: rgba(148, 126, 30, 0.04); /* Fondo muy sutil */
+    border-bottom: 2px solid #947e1e; /* Coincide con la línea inferior */
 }
 
 .navbar > ul > li.active,
 .navbar > ul > li > a.active {
-    border-bottom: 2px solid black; 
+    border-bottom: 2px solid #947e1e;
+    color: #947e1e;
 }
 
 .navbar > ul > li > a {
-    color: black;
+    color: #555; /* Gris medio elegante */
     text-decoration: none;
-    font-size: 1em;
-    padding: 0 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%; 
     height: 100%; 
-    text-align: center;
     transition: color 0.3s; 
 }
 
+.navbar > ul > li:hover > a {
+    color: #947e1e;
+}
+
 /* ============================= */
-/*       FLECHA INDICADORA       */
+/* FLECHA INDICADORA       */
 /* ============================= */
 
 .navbar .menu-item-has-children > a {
-    margin-right: 5px; 
-    padding-right: 0;
+    padding-right: 5px;
 }
 
 .navbar .menu-item-has-children::after {
@@ -76,17 +83,18 @@
     font-family: "Font Awesome 6 Free";
     font-weight: 900;
     font-size: 0.7em;
-    color: black;
-    margin-left: 5px; 
+    color: #999;
+    margin-right: 15px; /* Espacio */
     transition: transform 0.3s ease;
 }
 
 .navbar .menu-item-has-children:hover::after {
     transform: rotate(180deg);
+    color: #947e1e;
 }
 
 /* =============================== */
-/* ESTILOS DEL SUBMENÚ (MEGA MENU) */
+/* SUBMENÚ             */
 /* =============================== */
 
 .navbar .sub-menu {
@@ -94,16 +102,13 @@
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
+    min-width: 220px; /* Ancho mínimo */
     background-color: white;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    padding: 20px 0 20px max(20px, calc(50% - 600px));
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
     z-index: 999;
-    border-top: 3px solid #7b6a18;
+    border-top: 3px solid #947e1e; /* Línea de acento */
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 5px;
 }
 
 .navbar > ul > li:hover > .sub-menu {
@@ -112,31 +117,26 @@
 }
 
 .navbar .sub-menu li {
-    margin: 0;
-    padding: 0;
     display: block;
-    width: auto;
-    background: none; 
+    width: 100%;
 }
 
 .navbar .sub-menu li a {
-    padding: 8px 25px;
+    padding: 10px 20px;
     display: block;
-    width: auto;
     text-align: left; 
-    color: #333; 
-    font-weight: 600;
-    font-size: 0.95em;
+    color: #666; 
+    font-weight: 500;
+    font-size: 0.9em;
+    text-transform: none; /* Normal en submenu */
+    border-radius: 0;
     white-space: nowrap;
-    transition: all 0.3s;
-    border-radius: 4px;
-    text-decoration: none;
 }
 
 .navbar .sub-menu li a:hover {
-    background-color: #eeda81;
-    color: black;
-    transform: translateX(5px);
+    background-color: #f9f9f9;
+    color: #947e1e;
+    transform: translateX(5px); /* Pequeño desplazamiento */
 }
 
 @keyframes fadeIn {
@@ -144,11 +144,6 @@
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ============================= */
-/* RESPONSIVE (OCULTAR NAV PC)   */
-/* ============================= */
-@media (max-width: 768px) {
-    .navbar {
-        display: none; /* Esto oculta la barra amarilla en móviles */
-    }
+@media (max-width: 992px) {
+    .navbar { display: none; }
 }
