@@ -7,13 +7,14 @@
     color: white;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     position: relative; 
     z-index: 100;       
+    height: 50px;
 }
 
-.navbar ul {
+.navbar > ul {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -21,24 +22,25 @@
     width: 100%;
     max-width: 1100px;
     justify-content: space-around; 
-    position: static;
+    align-items: stretch; 
+    position: static; /* Necesario para que el submenú ocupe el ancho de .navbar (o pantalla) */
 }
 
-.navbar li {
+.navbar > ul > li {
     margin: 0;
     padding: 0;
-    position: static;
+    position: static; /* Static aquí permite que el hijo absoluto se posicione respecto al padre relativo más cercano */
     display: flex;
     align-items: center;
     flex-grow: 1; 
-    max-width: none; 
     justify-content: center;
-    transition: border-bottom 0.3s;
+    transition: background-color 0.3s, border-bottom 0.3s;
     border-bottom: 2px solid transparent;
 }
 
-.navbar li:hover {
+.navbar > ul > li:hover {
     border-bottom: 2px solid black;
+    background-color: rgba(0,0,0,0.02);
 }
 
 .navbar a.active, 
@@ -46,13 +48,16 @@
     border-bottom: 2px solid black; 
 }
 
-.navbar a {
+.navbar > ul > li > a {
     color: black;
     text-decoration: none;
     font-size: 1em;
-    padding: 15px 10px; /* Un poco más de aire vertical */
-    display: block; 
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%; 
+    height: 100%; 
     text-align: center;
     transition: color 0.3s; 
     border-bottom: none;
@@ -62,12 +67,7 @@
 /*       FLECHA INDICADORA       */
 /* ============================= */
 
-.navbar .menu-item-has-children {
-    justify-content: center; 
-    display: flex; 
-}
-
-.navbar .menu-item-has-children>a {
+.navbar .menu-item-has-children > a {
     margin-right: 5px; 
     padding-right: 0;
 }
@@ -78,79 +78,74 @@
     font-weight: 900;
     font-size: 0.7em;
     color: black;
-    margin-left: 0; 
+    margin-left: 5px; 
     transition: transform 0.3s ease;
-    align-self: center; 
 }
 
-/* ============================= */
+.navbar .menu-item-has-children:hover::after {
+    transform: rotate(180deg);
+}
+
+/* =============================== */
 /* ESTILOS DEL SUBMENÚ (MEGA MENU) */
-/* ============================= */
+/* =============================== */
 
 .navbar ul .sub-menu {
     display: none;
     position: absolute;
-    
-    /* POSICIONAMIENTO FULL WIDTH */
-    top: 100%; /* Justo debajo de la barra */
+    top: 100%;
     left: 0;
-    width: 100%; /* Ocupa todo el ancho */
-    
-    /* ESTILO VISUAL TIPO CCS.CL */
-    background-color: #f9f9f9; /* Fondo muy claro/blanco */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra elegante abajo */
-    padding: 20px 0;
-    z-index: 10;
-    border-top: 3px solid #7b6a18; /* Borde superior decorativo */
-    
-    /* DISTRIBUCIÓN HORIZONTAL */
-    flex-direction: row; 
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px; /* Espacio entre items */
-}
-
-/* Quitamos el triangulito superior antiguo ya que ahora es barra completa */
-.navbar ul .sub-menu::before {
-    content: none;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    padding: 20px 0 20px max(20px, calc(50% - 550px));
+    z-index: 999;
+    border-top: 3px solid #7b6a18;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 5px;
 }
 
 .navbar li:hover > .sub-menu {
     display: flex;
+    animation: fadeIn 0.3s ease;
 }
 
+/* Items del submenú */
 .navbar ul .sub-menu li {
     margin: 0;
     padding: 0;
     position: relative;
     display: block;
-    
-    /* Ajuste de ancho de los items internos */
-    width: auto; 
-    flex-grow: 0;
-    border-bottom: none !important; 
+    width: auto;
+    border-bottom: none !important;
+    background: none !important;
 }
 
 .navbar ul .sub-menu li a {
-    box-sizing: border-box; 
-    padding: 10px 25px;
+    padding: 8px 25px;
     display: block;
     width: auto;
-    text-align: center;
-    
-    /* TEXTO OSCURO (porque el fondo ahora es claro) */
+    text-align: left; 
     color: #333; 
     font-weight: 600;
     font-size: 0.95em;
-    
     white-space: nowrap;
     transition: all 0.3s;
     border-radius: 4px;
-    border-bottom: none;
+    height: auto;
+    text-decoration: none;
 }
 
 .navbar ul .sub-menu li a:hover {
-    background-color: #eeda81; /* Color de fondo al pasar el mouse */
+    background-color: #eeda81;
     color: black;
-    transform: translateY(-2px); /* Pequeño efecto de elevación */
+    transform: translateX(5px);
+}
+
+/* Animación suave */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
