@@ -97,6 +97,12 @@ function theme_enqueue_assets()
         filemtime(get_template_directory() . '/assets/css/page.css')
     );
     wp_enqueue_style(
+        'single-style',
+        get_template_directory_uri() . '/assets/css/single.css',
+        array('global-style'),
+        filemtime(get_template_directory() . '/assets/css/single.css')
+    );
+    wp_enqueue_style(
         'chips-style',
         get_template_directory_uri() . '/assets/css/chips.css',
         array('global-style'),

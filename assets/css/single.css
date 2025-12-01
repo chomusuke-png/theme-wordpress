@@ -1,0 +1,233 @@
+/* ================================= */
+/* ESTRUCTURA PRINCIPAL SINGLE       */
+/* ================================= */
+
+.single-main-wrapper {
+    padding-bottom: 80px;
+    background-color: #faf9f6; /* Fondo perla */
+}
+
+.single-article {
+    width: 100%;
+}
+
+/* ================================= */
+/* HEADER DEL POST (BANNER)          */
+/* ================================= */
+
+/* Con imagen de fondo */
+.single-header.has-bg {
+    position: relative;
+    height: 400px; /* Un poco más alto que las páginas para impactar */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.single-header-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Oscuro para contraste */
+    z-index: 1;
+}
+
+.single-header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 800px;
+    color: white;
+}
+
+/* Sin imagen de fondo */
+.single-header.no-bg {
+    padding: 60px 20px 40px;
+    text-align: center;
+    background-color: #faf9f6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Títulos */
+.single-title {
+    margin: 15px 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.single-title.title-dark {
+    color: #333;
+    text-shadow: none;
+}
+
+/* Metadatos (Autor, Fecha, Cat) */
+.single-meta-top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.meta-cat {
+    background-color: #947e1e;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.meta-date {
+    opacity: 0.9;
+}
+
+/* Ajustes para modo claro (sin fondo) */
+.single-meta-top.dark-mode {
+    color: #666;
+}
+
+.single-author {
+    font-size: 1rem;
+    margin-top: 10px;
+    opacity: 0.9;
+}
+
+.single-author.title-dark {
+    color: #555;
+}
+
+.title-divider {
+    width: 60px;
+    height: 3px;
+    background-color: #947e1e;
+    margin: 20px auto 0;
+}
+
+/* ================================= */
+/* CONTENEDOR DE LECTURA             */
+/* ================================= */
+
+.single-content-container {
+    max-width: 800px; /* Ancho optimizado para lectura */
+    margin: 0 auto; /* Para que 'pise' un poco el banner si quisieras, aquí lo dejo plano */
+    background: #ffffff;
+    padding: 50px 60px;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.04);
+    border: 1px solid #f0f0f0;
+    position: relative;
+    top: -30px; /* Efecto flotante sobre el banner */
+}
+
+/* Tipografía del cuerpo */
+.single-body {
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.8;
+}
+
+.single-body p {
+    margin-bottom: 25px;
+}
+
+.single-body h2, .single-body h3 {
+    color: #947e1e;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.single-body blockquote {
+    border-left: 4px solid #947e1e;
+    margin: 30px 0;
+    padding: 10px 20px;
+    background: #faf9f6;
+    font-style: italic;
+    color: #555;
+}
+
+.single-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+/* ================================= */
+/* FOOTER DEL POST (TAGS & NAV)      */
+/* ================================= */
+
+.single-footer {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+/* Etiquetas */
+.single-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.tag-link {
+    color: #555;
+    background: #f4f4f4;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s;
+    font-size: 0.85rem;
+}
+
+.tag-link:hover {
+    background: #947e1e;
+    color: white;
+}
+
+/* Navegación Siguiente/Anterior */
+.post-navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-navigation a {
+    color: #947e1e;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.post-navigation a:hover {
+    color: #2b2b2b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .single-content-container {
+        padding: 30px 20px;
+        margin: 0 15px;
+        top: 0; /* Quitar efecto flotante en móvil */
+    }
+    .single-header.has-bg {
+        height: 250px;
+    }
+    .single-title {
+        font-size: 1.8rem;
+    }
+}
