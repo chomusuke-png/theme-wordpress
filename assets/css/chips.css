@@ -1,0 +1,64 @@
+/* ================================= */
+/* CHIPS (TAGS Y CATEGORÍAS)    */
+/* ================================= */
+
+/* Contenedor flexible para alinear los chips */
+.chips-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px; /* Espacio entre chips */
+    margin: 10px 0 20px 0;
+    padding: 0;
+    list-style: none; /* Por si se usa dentro de ul/li */
+}
+
+/* Estilo base del Chip (Enlace) */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px; /* Forma de píldora */
+    transition: all 0.3s ease;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* --- ESTILO PARA CATEGORÍAS (Sólido / Color Tema) --- */
+/* Usamos tu color principal #947e1e */
+.chip-category {
+    background-color: #947e1e;
+    color: #ffffff;
+    border: 1px solid #947e1e;
+}
+
+.chip-category:hover {
+    background-color: #7b6a18; /* Un poco más oscuro al pasar el mouse */
+    border-color: #7b6a18;
+    color: #ffffff;
+    transform: translateY(-2px); /* Pequeña elevación */
+}
+
+/* --- ESTILO PARA TAGS (Outline / Ligero) --- */
+.chip-tag {
+    background-color: transparent;
+    color: #666;
+    border: 1px solid #ccc;
+}
+
+.chip-tag:hover {
+    background-color: #947e1e;
+    border-color: #947e1e;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* Iconos dentro del chip (opcional) */
+.chip i {
+    margin-right: 6px;
+    font-size: 0.9em;
+}
