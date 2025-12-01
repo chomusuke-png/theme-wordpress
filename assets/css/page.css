@@ -1,0 +1,155 @@
+/* ================================= */
+/* ESTRUCTURA PRINCIPAL DE PÁGINA    */
+/* ================================= */
+
+.page-main-wrapper {
+    padding-bottom: 60px;
+    background-color: #faf9f6; /* Fondo perla global */
+}
+
+.page-article {
+    width: 100%;
+}
+
+/* ================================= */
+/* HEADER DE PÁGINA (BANNER)         */
+/* ================================= */
+
+/* Caso: Con Imagen de Fondo */
+.page-header.has-bg {
+    position: relative;
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.page-header-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Oscurecer para leer texto */
+    z-index: 1;
+}
+
+.page-header-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.page-title {
+    margin: 0;
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #ffffff; /* Blanco si hay fondo oscuro */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Caso: Sin Imagen (Solo título) */
+.page-header.no-bg {
+    padding: 60px 20px 30px;
+    text-align: center;
+    background-color: #faf9f6;
+}
+
+.page-title.title-dark {
+    color: #947e1e; /* Mostaza corporativo */
+    text-shadow: none;
+    margin-bottom: 15px;
+}
+
+.title-divider {
+    width: 60px;
+    height: 3px;
+    background-color: #ddd;
+    margin: 0 auto;
+}
+
+/* ================================= */
+/* CONTENEDOR DE TEXTO (Caja Blanca) */
+/* ================================= */
+
+.page-content-container {
+    max-width: 900px; /* Ancho cómodo para leer */
+    margin: 0 auto;
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03); /* Sombra suave */
+    border: 1px solid #f0f0f0;
+}
+
+/* Tipografía del contenido */
+.page-body {
+    font-size: 1.05rem;
+    color: #444;
+    line-height: 1.8;
+}
+
+.page-body h2, 
+.page-body h3, 
+.page-body h4 {
+    color: #947e1e;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.page-body p {
+    margin-bottom: 20px;
+}
+
+.page-body a {
+    color: #947e1e;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.page-body a:hover {
+    color: #7a6615;
+    text-decoration: none;
+}
+
+.page-body ul, .page-body ol {
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+.page-body li {
+    margin-bottom: 10px;
+}
+
+/* Imágenes dentro del contenido */
+.page-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 20px 0;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* ================================= */
+/* RESPONSIVE                        */
+/* ================================= */
+
+@media (max-width: 768px) {
+    .page-header.has-bg {
+        height: 200px;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+    }
+
+    .page-content-container {
+        padding: 30px 20px;
+        margin: 0 15px; /* Un poco de margen en móviles */
+        width: auto;
+    }
+}

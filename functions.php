@@ -91,6 +91,12 @@ function theme_enqueue_assets()
         filemtime(get_template_directory() . '/assets/css/hero-slider.css')
     );
     wp_enqueue_style(
+        'page-style',
+        get_template_directory_uri() . '/assets/css/page.css',
+        array('global-style'),
+        filemtime(get_template_directory() . '/assets/css/page.css')
+    );
+    wp_enqueue_style(
         'chips-style',
         get_template_directory_uri() . '/assets/css/chips.css',
         array('global-style'),
