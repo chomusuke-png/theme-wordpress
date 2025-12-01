@@ -1,0 +1,114 @@
+/* ================================= */
+/* SECCIÓN CATEGORÍAS DESTACADAS     */
+/* ================================= */
+
+.featured-categories {
+    padding: 60px 20px;
+    background-color: #ffffff; /* Diferenciarlo del fondo perla general */
+    border-bottom: 1px solid #eee;
+}
+
+.cat-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Rejilla de Tarjetas */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+/* Tarjeta Individual */
+.cat-card {
+    position: relative;
+    height: 280px; /* Altura fija */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: #333; /* Fallback color */
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.cat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(148, 126, 30, 0.2);
+}
+
+/* Overlay Oscuro (Gradiente para elegancia) */
+.cat-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+    transition: background 0.3s;
+    z-index: 1;
+}
+
+.cat-card:hover .cat-overlay {
+    background: linear-gradient(to top, rgba(148, 126, 30, 0.9), rgba(148, 126, 30, 0.4)); /* Efecto mostaza al hover */
+}
+
+/* Contenido */
+.cat-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    padding: 20px;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+.cat-card:hover .cat-content {
+    transform: translateY(0);
+}
+
+.cat-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: rgba(255,255,255,0.8);
+}
+
+.cat-content h4 {
+    margin: 0 0 5px;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cat-content p {
+    margin: 0 0 20px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Botón "Ver más" */
+.btn-cat {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid white;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s;
+    background: rgba(255,255,255,0.1);
+    opacity: 0; /* Oculto inicialmente */
+    transform: translateY(20px);
+}
+
+.cat-card:hover .btn-cat {
+    opacity: 1;
+    transform: translateY(0);
+    background: white;
+    color: #947e1e;
+}
