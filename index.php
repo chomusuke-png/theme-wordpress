@@ -56,34 +56,17 @@
 
 
 <main class="content-area">
-    <h3 class="section-title">Últimas Publicaciones</h3>
     
-    <?php if (have_posts()): ?>
-        <div class="posts-loop">
-            <?php while (have_posts()): the_post(); ?>
-                <article class="post-card">
-                    <?php if (has_post_thumbnail()): ?>
-                        <div class="thumb">
-                            <a href="<?php the_permalink(); ?>">
-                                <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>">
-                            </a>
-                        </div>
-                    <?php endif; ?>
-                    
-                    <div class="post-content">
-                        <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-                        <p><?php the_excerpt(); ?></p>
-                    </div>
-                </article>
-            <?php endwhile; ?>
-        </div>
+    <div class="home-widgets-container">
+        <?php if (is_active_sidebar('home-widgets')) : ?>
+            <?php dynamic_sidebar('home-widgets'); ?>
+        <?php else : ?>
+            <p style="text-align:center; padding: 40px; color:#666;">
+                Activa widgets en el área "Home Widgets" desde Apariencia > Widgets.
+            </p>
+        <?php endif; ?>
+    </div>
 
-        <div class="pagination">
-            <?php the_posts_pagination(); ?>
-        </div>
-    <?php else: ?>
-        <p>No hay contenido disponible.</p>
-    <?php endif; ?>
 </main>
 
 <?php get_footer(); ?>

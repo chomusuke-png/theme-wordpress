@@ -6,12 +6,20 @@ function theme_setup()
 
     add_theme_support('title-tag');
 
-    // 1. Registra la ubicación principal del menú
     register_nav_menus(array(
         'main_menu' => esc_html__('Menu', 'textdomain'),
     ));
 
-    // 2. Registra las áreas de widgets del footer de forma simplificada
+    register_sidebar(array(
+        'name'          => esc_html__('Home Widgets', 'textdomain'),
+        'id'            => 'home-widgets',
+        'description'   => esc_html__('Área de widgets debajo del slider en la página de inicio.', 'textdomain'),
+        'before_widget' => '<div id="%1$s" class="home-widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="home-widget-title">',
+        'after_title'   => '</h3>',
+    ));
+
     $footer_widgets_count = 3;
 
     for ($i = 1; $i <= $footer_widgets_count; $i++) {

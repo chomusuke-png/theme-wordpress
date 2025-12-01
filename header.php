@@ -20,7 +20,11 @@
         </div>
 
         <div class="header-center">
-            <p class="header-slogan"><?php bloginfo('description'); ?></p>
+            <form role="search" method="get" class="header-search-form" action="<?php echo esc_url(home_url('/')); ?>">
+                <input type="search" class="search-field" placeholder="¿Qué estás buscando?"
+                    value="<?php echo get_search_query(); ?>" name="s" />
+                <button type="submit" class="search-submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
         </div>
 
         <div class="header-right">
