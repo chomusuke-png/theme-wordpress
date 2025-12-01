@@ -11,7 +11,6 @@
 
     <header class="main-header">
 
-        <!-- LOGO -->
         <div class="header-left">
             <?php
             if (function_exists('the_custom_logo')) {
@@ -20,12 +19,10 @@
             ?>
         </div>
 
-        <!-- TEXTO PRINCIPAL -->
         <div class="header-center">
             <p class="header-slogan"><?php bloginfo('description'); ?></p>
         </div>
 
-        <!-- BOTONES → redes -->
         <div class="header-right">
             <div class="contact">
                 <?php
@@ -42,32 +39,32 @@
             </div>
         </div>
 
-
-        <!-- Botón móvil -->
         <div class="hamburger" id="hamburgerBtn">
             <i class="fa-solid fa-bars"></i>
         </div>
 
+        <nav class="mobile-menu" id="mobileMenu">
+            <?php
+            if (has_nav_menu('main_menu')) {
+                wp_nav_menu([
+                    "theme_location" => "main_menu",
+                    "container" => "",
+                    "items_wrap" => '<ul>%3$s</ul>'
+                ]);
+            }
+            ?>
+        </nav>
+
     </header>
 
-    <!-- NAV -->
     <nav class="navbar">
         <?php
-        wp_nav_menu([
-            "theme_location" => "main_menu",
-            "container" => "",
-            "items_wrap" => '<ul>%3$s</ul>'
-        ]);
-        ?>
-    </nav>
-
-    <!-- NAV MÓVIL -->
-    <nav class="mobile-menu" id="mobileMenu">
-        <?php
-        wp_nav_menu([
-            "theme_location" => "main_menu",
-            "container" => "",
-            "items_wrap" => '<ul>%3$s</ul>'
-        ]);
+        if (has_nav_menu('main_menu')) {
+            wp_nav_menu([
+                "theme_location" => "main_menu",
+                "container" => "",
+                "items_wrap" => '<ul>%3$s</ul>'
+            ]);
+        }
         ?>
     </nav>

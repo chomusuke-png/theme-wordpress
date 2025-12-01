@@ -8,7 +8,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: relative; /* Clave para el menú móvil absoluto */
     z-index: 1000;
 }
 
@@ -49,36 +49,81 @@
     font-size: 26px;
     cursor: pointer;
     color: #947e1e;
+    padding: 5px; /* Mejor área de toque */
 }
 
-/* MOBILE MENU */
+/* ============================= */
+/*       MOBILE MENU             */
+/* ============================= */
 .mobile-menu {
-    display: none;
+    display: none; /* Oculto por defecto, JS lo cambia a block */
+    position: absolute;
+    top: 100%; /* Justo debajo del header */
+    left: 0;
+    width: 100%;
     background: white;
-    border-top: 2px solid #947e1e;
-    padding: 15px 20px;
+    border-top: 1px solid #e0e0e0;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Sombra para resaltar */
+    z-index: 2000; /* Encima del slider */
+    padding: 0;
 }
 
 .mobile-menu ul {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
+/* Elementos de lista */
 .mobile-menu ul li {
-    margin-bottom: 12px;
+    margin: 0;
+    border-bottom: 1px solid #f0f0f0;
 }
 
+/* Enlaces principales */
 .mobile-menu ul li a {
+    display: block; /* Ocupa todo el ancho */
+    padding: 15px 25px;
     text-decoration: none;
     color: #333;
     font-size: 16px;
     font-weight: 600;
+    transition: background-color 0.2s, color 0.2s;
 }
 
-/* RESPONSIVE */
+.mobile-menu ul li a:hover {
+    background-color: #f9f9f9;
+    color: #947e1e;
+}
+
+/* SUBMENUS (Indentación) */
+.mobile-menu .sub-menu {
+    background-color: #fcfcfc; /* Fondo ligeramente gris para diferenciar */
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.03);
+}
+
+.mobile-menu .sub-menu li {
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.mobile-menu .sub-menu li a {
+    padding-left: 45px; /* Sangría notable */
+    font-size: 15px;
+    font-weight: normal;
+    color: #555;
+}
+
+.mobile-menu .sub-menu li a:hover {
+    color: #000;
+}
+
+/* ============================= */
+/*       RESPONSIVE              */
+/* ============================= */
 @media (max-width: 768px) {
     .navbar { display: none; }
     .hamburger { display: block; }
     .custom-logo { height: 70px !important; }
     .main-header { padding: 10px 20px; }
+    .header-center { display: none; } 
 }
