@@ -207,7 +207,31 @@ function _theme_customize_register($wp_customize)
         ]
     ]));
 
-    // 4. GENERAL
+    // 4. MARCAS QUE CONFÍAN (GRID) - NUEVO
+    $wp_customize->add_section('_theme_brands_section', [
+        'title' => __('Marcas (Grilla)', '_theme'),
+        'priority' => 33,
+        'description' => 'Logos que se mostrarán en formato grilla (más pequeños).'
+    ]);
+
+    $wp_customize->add_setting('_theme_brands_repeater', [
+        'default' => '',
+        'sanitize_callback' => 'wp_kses_post'
+    ]);
+
+    $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_brands_repeater', [
+        'label' => __('Logos de Marcas', '_theme'),
+        'section' => '_theme_brands_section',
+        'button_text' => 'Añadir Marca',
+        'mode' => 'image', // Usamos el modo imagen también
+        'input_labels' => [
+            'title' => 'Nombre de la marca',
+            'icon'  => 'Logo',
+            'url'   => 'Sitio web (Opcional)'
+        ]
+    ]));
+
+    // 5. GENERAL
     $wp_customize->add_section('_theme_general_section', array(
         'title' => __('Configuración General', '_theme'),
         'priority' => 35,

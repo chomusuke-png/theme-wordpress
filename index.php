@@ -115,6 +115,35 @@
     </section>
     <?php endif; ?>
 
+    <?php 
+    $brands = json_decode(get_theme_mod('_theme_brands_repeater'), true); 
+    if (!empty($brands)): 
+    ?>
+    <section class="brands-section">
+        <div class="brands-container">
+            <h3 class="section-title">Marcas que confían en nosotros</h3>
+            
+            <div class="brands-grid">
+                <?php foreach ($brands as $brand): 
+                    $name = esc_attr($brand['title']);
+                    $logo_url = esc_url($brand['icon']);
+                    $link = esc_url($brand['url']);
+                ?>
+                    <div class="brand-item">
+                        <?php if($link): ?>
+                            <a href="<?php echo $link; ?>" target="_blank" rel="noopener">
+                                <img src="<?php echo $logo_url; ?>" alt="<?php echo $name; ?>" title="<?php echo $name; ?>">
+                            </a>
+                        <?php else: ?>
+                            <img src="<?php echo $logo_url; ?>" alt="<?php echo $name; ?>" title="<?php echo $name; ?>">
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
 <?php endif; ?>
 
 <main class="content-area">

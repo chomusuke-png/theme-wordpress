@@ -1,0 +1,66 @@
+/* ==================== */
+/* SECCIÓN MARCAS (GRID) */
+/* ==================== */
+
+.brands-section {
+    padding: 50px 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eee;
+}
+
+.brands-container {
+    max-width: 1000px; /* Un poco más estrecho para que se vea compacto */
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+/* La Grilla Mágica */
+.brands-grid {
+    display: grid;
+    /* Esto crea columnas automáticas de mínimo 120px */
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); 
+    gap: 30px; /* Espacio entre logos */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ítem Individual */
+.brand-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.brand-item:hover {
+    transform: translateY(-3px);
+}
+
+/* Imágenes (Logos Pequeños) */
+.brand-item img {
+    max-width: 100%;
+    max-height: 50px; /* Logos más pequeños que los Aliados */
+    width: auto;
+    filter: grayscale(100%);
+    opacity: 0.5; /* Más sutiles */
+    transition: all 0.3s ease;
+}
+
+/* Efecto Hover */
+.brand-item img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .brands-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas en móvil */
+        gap: 15px;
+    }
+    .brand-item img {
+        max-height: 40px;
+    }
+}
