@@ -120,6 +120,13 @@ function theme_enqueue_assets()
         array('global-style'),
         filemtime(get_template_directory() . '/assets/css/chips.css')
     );
+    // Estilos de partners/aliados
+    wp_enqueue_style(
+        'partners-style',
+        get_template_directory_uri() . '/assets/css/partners.css',
+        array('global-style'),
+        filemtime(get_template_directory() . '/assets/css/partners.css')
+    );
     
     // Scripts
     wp_enqueue_script(

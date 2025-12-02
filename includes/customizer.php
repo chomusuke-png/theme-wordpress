@@ -10,6 +10,13 @@ if (class_exists('WP_Customize_Control')) {
         public $type = '_theme_repeater';
         public $repeater_icons = [];
         public $button_text = 'Añadir elemento';
+        public $mode = 'icon'; // 'icon' (default) o 'image'
+        
+        public $input_labels = [
+            'title' => 'Título',
+            'icon'  => 'Icono / Imagen',
+            'url'   => 'URL'
+        ];
 
         public function __construct($manager, $id, $args = array())
         {
@@ -22,65 +29,84 @@ if (class_exists('WP_Customize_Control')) {
             if (isset($args['button_text'])) {
                 $this->button_text = $args['button_text'];
             }
+
+            if (isset($args['mode'])) {
+                $this->mode = $args['mode'];
+            }
+
+            if (isset($args['input_labels']) && is_array($args['input_labels'])) {
+                $this->input_labels = array_merge($this->input_labels, $args['input_labels']);
+            }
         }
 
         public function enqueue()
         {
-            // Estandarizado: 'jquery-ui-sortable' es correcto.
+            // IMPORTANTE: Encolar la librería de medios de WordPress
+            wp_enqueue_media();
+            
             wp_enqueue_script('jquery-ui-sortable');
-            
-            // EL SCRIPT DE REPETIDOR SE ENCOLA AQUÍ
             wp_enqueue_script('_theme-repeater', get_template_directory_uri() . '/repeater.js', ['jquery', 'jquery-ui-sortable'], false, true);
-            
-            // Estandarizado: Cambiado el handle del estilo.
             wp_enqueue_style('_theme-repeater-css', get_template_directory_uri() . '/repeater.css');
         }
         
         public function render_content()
         {
-            // ... (Contenido del render_content sin cambios) ...
             $value = $this->value();
             $value = $value ? json_decode($value, true) : [];
             $icons = $this->repeater_icons;
-
-            if (empty($icons)) {
-                $icons = [];
-            }
             ?>
 
             <label>
                 <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
             </label>
 
-            <div class="_theme-repeater-wrapper <?php echo esc_attr($this->id); ?>">
+            <div class="_theme-repeater-wrapper <?php echo esc_attr($this->id); ?>" data-mode="<?php echo esc_attr($this->mode); ?>">
                 <button type="button" class="button add-repeater-item"><?php echo esc_html($this->button_text); ?></button>
 
                 <ul class="_theme-repeater-list">
                     <?php if (!empty($value)): ?>
                         <?php foreach ($value as $item): ?>
                             <li class="_theme-repeater-item">
-
-                                <input type="text" class="title-field" placeholder="Título del sitio"
+                                <label class="field-label"><?php echo esc_html($this->input_labels['title']); ?></label>
+                                <input type="text" class="title-field" placeholder="Ej: Nombre Empresa"
                                     value="<?php echo esc_attr(isset($item['title']) ? $item['title'] : ''); ?>">
 
-                                <select class="icon-select">
-                                    <option value="">Elegir icono…</option>
-                                    <?php foreach ($icons as $class => $label): ?>
-                                        <option value="<?php echo esc_attr($class); ?>" <?php selected(isset($item['icon']) ? $item['icon'] : '', $class); ?>>
-                                            <?php echo esc_html($label); ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </select>
+                                <label class="field-label"><?php echo esc_html($this->input_labels['icon']); ?></label>
+                                
+                                <?php if ($this->mode === 'image'): ?>
+                                    <div class="image-upload-controls">
+                                        <?php 
+                                            $img_val = isset($item['icon']) ? $item['icon'] : ''; 
+                                            $display_style = $img_val ? 'display:block;' : 'display:none;';
+                                        ?>
+                                        <img src="<?php echo esc_url($img_val); ?>" class="repeater-image-preview" style="<?php echo $display_style; ?>" />
+                                        
+                                        <input type="hidden" class="icon-field" value="<?php echo esc_attr($img_val); ?>">
+                                        <button type="button" class="button upload-repeater-image">Seleccionar Imagen</button>
+                                        <?php if($img_val): ?>
+                                            <button type="button" class="button remove-repeater-image" style="color: #a00;">X</button>
+                                        <?php endif; ?>
+                                    </div>
 
-                                <input type="text" class="icon-field" placeholder="o escribe icono (fa-solid fa-user)"
-                                    value="<?php echo esc_attr(isset($item['icon']) ? $item['icon'] : ''); ?>">
+                                <?php else: ?>
+                                    <select class="icon-select">
+                                        <option value="">Elegir icono…</option>
+                                        <?php foreach ($icons as $class => $label): ?>
+                                            <option value="<?php echo esc_attr($class); ?>" <?php selected(isset($item['icon']) ? $item['icon'] : '', $class); ?>>
+                                                <?php echo esc_html($label); ?>
+                                            </option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                    <input type="text" class="icon-field" placeholder="o escribe icono (fa-solid fa-user)"
+                                        value="<?php echo esc_attr(isset($item['icon']) ? $item['icon'] : ''); ?>">
+                                <?php endif; ?>
 
-                                <input type="text" class="url-field" placeholder="URL" value="<?php echo esc_attr(isset($item['url']) ? $item['url'] : ''); ?>">
+                                <label class="field-label"><?php echo esc_html($this->input_labels['url']); ?></label>
+                                <input type="text" class="url-field" placeholder="https://..." value="<?php echo esc_attr(isset($item['url']) ? $item['url'] : ''); ?>">
 
                                 <span class="drag-handle">☰</span>
-                                <button type="button" class="button remove-social">Eliminar</button>
+                                <button type="button" class="button remove-social">Eliminar ítem</button>
                             </li>
-
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </ul>
@@ -89,49 +115,18 @@ if (class_exists('WP_Customize_Control')) {
                     value="<?php echo esc_attr($this->value()); ?>">
 
             </div>
-
             <?php
         }
     }
 }
 
-
-// =======================================
-// CLASE PARA DROPDOWN DE CATEGORÍAS
-// =======================================
-if (class_exists('WP_Customize_Control')) {
-    class _Theme_Category_Control extends WP_Customize_Control
-    {
-        public $type = 'dropdown-categories';
-
-        public function render_content()
-        {
-            $dropdown = wp_dropdown_categories([
-                'show_option_none' => __('— Selecciona una categoría —'),
-                'orderby' => 'name',
-                'hide_empty' => false,
-                'name' => '_customize-dropdown-categories-' . $this->id,
-                'selected' => $this->value(),
-                'echo' => false
-            ]);
-
-            $dropdown = str_replace('<select', '<select ' . $this->get_link(), $dropdown);
-
-            echo '<label><span class="customize-control-title">' . esc_html($this->label) . '</span></label>';
-            echo $dropdown;
-        }
-    }
-}
-
-
 // ===================================
-// REGISTRO DE SECCIONES, AJUSTES Y CONTROLES
+// REGISTRO DE SECCIONES Y AJUSTES
 // ===================================
 
-// Se mantiene la lógica de registro, pero quitamos el wp_localize_script de aquí.
 function _theme_customize_register($wp_customize)
 {
-    // 1. DEFINICIÓN DE LISTAS DE ICONOS (Se definen aquí para reusarlos en la localización más abajo)
+    // ICONOS PREDEFINIDOS
     $social_icons = [
         'fab fa-facebook-f' => 'Facebook',
         'fab fa-instagram' => 'Instagram',
@@ -149,7 +144,7 @@ function _theme_customize_register($wp_customize)
         'fa-solid fa-globe' => 'Globo',
     ];
     
-    // 2. SECCIÓN REDES SOCIALES
+    // 1. REDES SOCIALES
     $wp_customize->add_section('_theme_social_section', [
         'title' => __('Redes Sociales', '_theme'),
         'priority' => 30,
@@ -165,11 +160,13 @@ function _theme_customize_register($wp_customize)
         'section' => '_theme_social_section',
         'repeater_icons' => $social_icons,
         'button_text' => 'Añadir red social',
+        'mode' => 'icon', // Modo normal
+        'input_labels' => ['title' => 'Título', 'icon' => 'Clase Icono (fa-...)', 'url' => 'Enlace']
     ]));
 
-    // 3. SECCIÓN SITIOS RELACIONADOS
+    // 2. SITIOS RELACIONADOS
     $wp_customize->add_section('_theme_related_sites_section', [
-        'title' => __('Sitios Relacionados', '_theme'),
+        'title' => __('Sitios Relacionados (Footer)', '_theme'),
         'priority' => 31,
     ]);
 
@@ -179,14 +176,38 @@ function _theme_customize_register($wp_customize)
     ]);
 
     $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_related_sites_repeater', [
-        'label' => __('Sitios relacionados del footer', '_theme'),
+        'label' => __('Enlaces del Footer', '_theme'),
         'section' => '_theme_related_sites_section',
         'repeater_icons' => $related_icons,
-        'button_text' => 'Añadir sitio relacionado',
+        'button_text' => 'Añadir sitio',
+        'mode' => 'icon', // Modo normal
+        'input_labels' => ['title' => 'Texto del enlace', 'icon' => 'Clase Icono', 'url' => 'URL Destino']
     ]));
 
+    // 3. ALIADOS / PARTNERS (MODO IMAGEN)
+    $wp_customize->add_section('_theme_partners_section', [
+        'title' => __('Aliados y Logos', '_theme'),
+        'priority' => 32,
+    ]);
 
-    // 4. SECCIÓN CONFIGURACIÓN GENERAL
+    $wp_customize->add_setting('_theme_partners_repeater', [
+        'default' => '',
+        'sanitize_callback' => 'wp_kses_post'
+    ]);
+
+    $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_partners_repeater', [
+        'label' => __('Logos del Slider', '_theme'),
+        'section' => '_theme_partners_section',
+        'button_text' => 'Añadir Aliado',
+        'mode' => 'image', // <--- ESTO ACTIVA EL SUBIDOR DE IMÁGENES
+        'input_labels' => [
+            'title' => 'Nombre de la empresa',
+            'icon'  => 'Logo de la empresa',
+            'url'   => 'Sitio web (Opcional)'
+        ]
+    ]));
+
+    // 4. GENERAL
     $wp_customize->add_section('_theme_general_section', array(
         'title' => __('Configuración General', '_theme'),
         'priority' => 35,
@@ -199,37 +220,23 @@ function _theme_customize_register($wp_customize)
     ));
 
     $wp_customize->add_control('_theme_posts_per_page_control', array(
-        'label' => __('Cantidad de artículos (Index/Carrusel)', '_theme'),
+        'label' => __('Cantidad de artículos', '_theme'),
         'section' => '_theme_general_section',
         'settings' => '_theme_posts_per_page',
         'type' => 'number',
-        'input_attrs' => array(
-            'min' => 1,
-            'max' => 50,
-            'step' => 1
-        )
+        'input_attrs' => array('min' => 1, 'max' => 50, 'step' => 1)
     ));
     
-    // GUARDAMOS LOS DATOS EN UNA VARIABLE GLOBAL (o en el objeto $wp_customize) 
-    // para poder usarlos en el hook de encolado.
     $wp_customize->social_icons = $social_icons;
     $wp_customize->related_icons = $related_icons;
-    
 }
 add_action('customize_register', '_theme_customize_register');
 
-
-// ===================================
-// LOCALIZACIÓN DE SCRIPTS (CORRECTA UBICACIÓN)
-// ===================================
 function _theme_customize_scripts_localize() {
     global $wp_customize;
-    
-    // Obtenemos los datos que guardamos en el hook anterior.
     $social_icons = isset($wp_customize->social_icons) ? $wp_customize->social_icons : [];
     $related_icons = isset($wp_customize->related_icons) ? $wp_customize->related_icons : [];
 
-    // Ahora el script _theme-repeater ya ha sido encolado por la clase de control.
     wp_localize_script('_theme-repeater', 'ThemeRepeaterData', [
         'social_icons' => $social_icons,
         'related_icons' => $related_icons,

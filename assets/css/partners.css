@@ -1,0 +1,49 @@
+/* ==================== */
+/* SECCIÓN ALIADOS      */
+/* ==================== */
+.partners-section {
+    padding: 60px 0 80px;
+    background-color: #faf9f6; /* Mismo tono que el fondo global */
+    border-top: 1px solid #eee;
+}
+
+.partners-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+.partners-section .section-title {
+    margin-bottom: 50px;
+    font-size: 1.8rem;
+    color: #333;
+    opacity: 0.8;
+}
+
+/* Slide Individual */
+.partners-slider .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    transition: transform 0.3s ease;
+}
+
+/* Imágenes (Logos) */
+.partners-slider img {
+    max-width: 100%;
+    max-height: 70px; /* Altura controlada */
+    width: auto;
+    filter: grayscale(100%); /* Blanco y negro por defecto */
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    object-fit: contain;
+}
+
+/* Efecto Hover */
+.partners-slider img:hover {
+    filter: grayscale(0%); /* Color original */
+    opacity: 1;
+    transform: scale(1.05); /* Pequeño zoom */
+}

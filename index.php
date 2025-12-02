@@ -46,16 +46,14 @@
             <h3 class="section-title">Cosas que te pueden interesar</h3>
             <div class="cat-grid">
                 <?php
-                // Obtener todas las categorías con posts
                 $categories = get_categories(array(
                     'orderby' => 'count',
                     'order'   => 'DESC',
-                    'number'  => 4, // Mostrar las 4 más populares
+                    'number'  => 4,
                     'hide_empty' => true
                 ));
 
                 foreach ($categories as $category) :
-                    // Intentamos obtener una imagen de un post de esta categoría para el fondo
                     $args = array(
                         'cat' => $category->term_id,
                         'posts_per_page' => 1,
@@ -70,8 +68,6 @@
                         }
                     }
                     wp_reset_postdata();
-
-                    // Si no hay imagen, usamos un color de fondo por defecto en CSS
                     $style_attr = $bg_image ? "style='background-image: url(\"$bg_image\");'" : "";
                 ?>
                     <div class="cat-card" <?php echo $style_attr; ?>>
@@ -87,6 +83,37 @@
             </div>
         </div>
     </section>
+
+    <?php 
+    $partners = json_decode(get_theme_mod('_theme_partners_repeater'), true); 
+    if (!empty($partners)): 
+    ?>
+    <section class="partners-section">
+        <div class="partners-container">
+            <h3 class="section-title">Nuestros Aliados Estratégicos</h3>
+            
+            <div class="swiper partners-slider">
+                <div class="swiper-wrapper">
+                    <?php foreach ($partners as $partner): 
+                        $name = esc_attr($partner['title']); // Nombre empresa
+                        $logo_url = esc_url($partner['icon']); // URL Logo (usamos el campo icon)
+                        $link = esc_url($partner['url']); // Link web
+                    ?>
+                        <div class="swiper-slide partner-logo">
+                            <?php if($link): ?>
+                                <a href="<?php echo $link; ?>" target="_blank" rel="noopener">
+                                    <img src="<?php echo $logo_url; ?>" alt="<?php echo $name; ?>" title="<?php echo $name; ?>">
+                                </a>
+                            <?php else: ?>
+                                <img src="<?php echo $logo_url; ?>" alt="<?php echo $name; ?>" title="<?php echo $name; ?>">
+                            <?php endif; ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
 
 <?php endif; ?>
 
