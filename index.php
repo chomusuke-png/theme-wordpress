@@ -150,10 +150,6 @@
     <div class="home-widgets-container">
         <?php if (is_active_sidebar('home-widgets')) : ?>
             <?php dynamic_sidebar('home-widgets'); ?>
-        <?php else : ?>
-            <p style="text-align:center; padding: 40px; color:#666;">
-                Activa widgets en el área "Home Widgets" desde Apariencia > Widgets.
-            </p>
         <?php endif; ?>
     </div>
 </main>
