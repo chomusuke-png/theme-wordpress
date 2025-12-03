@@ -19,24 +19,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 140px; 
     transition: transform 0.3s ease;
 }
 
 /* Imágenes (Logos) */
 .partners-slider img {
-    max-width: 100%;
-    max-height: 70px; /* Altura controlada */
+    max-height: 110px; 
+    max-width: 200px; 
     width: auto;
-    filter: grayscale(100%); /* Blanco y negro por defecto */
-    opacity: 0.6;
+    height: auto;
+    filter: grayscale(100%);
+    opacity: 0.7;
     transition: all 0.3s ease;
     object-fit: contain;
 }
 
 /* Efecto Hover */
 .partners-slider img:hover {
-    filter: grayscale(0%); /* Color original */
+    filter: grayscale(0%);
     opacity: 1;
-    transform: scale(1.05); /* Pequeño zoom */
+    transform: scale(1.05);
 }
