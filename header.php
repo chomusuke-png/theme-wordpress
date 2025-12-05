@@ -30,7 +30,7 @@
         <div class="header-right">
             
             <?php
-            // Obtenemos los valores del customizer con valores por defecto
+            // Obtenemos los valores del customizer
             $btn_text = get_theme_mod('_theme_header_btn_text', 'Hazte Miembro');
             $btn_url  = get_theme_mod('_theme_header_btn_url', home_url('/hazte-miembro'));
             
@@ -41,19 +41,28 @@
                 </a>
             <?php endif; ?>
 
-            <div class="contact">
-                <?php
-                $items = json_decode(get_theme_mod('_theme_social_repeater'), true);
+            <div class="social-menu-container">
+                <button id="socialToggleBtn" class="btn-social-toggle" aria-label="Síguenos">
+                    <i class="fa-solid fa-share-nodes"></i>
+                </button>
 
-                if (!empty($items)):
-                    foreach ($items as $item):
-                        $icon = esc_attr($item['icon']);
-                        $url = esc_url($item['url']);
-                        echo "<a href='$url' target='_blank'><i class='$icon'></i></a>";
-                    endforeach;
-                endif;
-                ?>
+                <div class="social-dropdown" id="socialDropdown">
+                    <?php
+                    $items = json_decode(get_theme_mod('_theme_social_repeater'), true);
+
+                    if (!empty($items)):
+                        foreach ($items as $item):
+                            $icon = esc_attr($item['icon']);
+                            $url = esc_url($item['url']);
+                            $title = isset($item['title']) ? esc_attr($item['title']) : '';
+                            // Solo icono dentro del enlace circular
+                            echo "<a href='$url' target='_blank' title='$title' class='social-circle-btn'><i class='$icon'></i></a>";
+                        endforeach;
+                    endif;
+                    ?>
+                </div>
             </div>
+
         </div>
 
         <div class="hamburger" id="hamburgerBtn">

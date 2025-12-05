@@ -77,3 +77,27 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// ... (Tu código anterior del menú hamburguesa y botón top) ...
+
+// =============== DROPDOWN REDES SOCIALES ===============
+const socialBtn = document.getElementById("socialToggleBtn");
+const socialDropdown = document.getElementById("socialDropdown");
+
+if (socialBtn && socialDropdown) {
+    
+    // Toggle al hacer clic en el botón
+    socialBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Evita que el clic cierre inmediatamente
+        socialDropdown.classList.toggle("show");
+        socialBtn.classList.toggle("active");
+    });
+
+    // Cerrar si se hace clic fuera
+    document.addEventListener("click", (e) => {
+        if (!socialDropdown.contains(e.target) && !socialBtn.contains(e.target)) {
+            socialDropdown.classList.remove("show");
+            socialBtn.classList.remove("active");
+        }
+    });
+}
