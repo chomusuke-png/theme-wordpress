@@ -84,66 +84,6 @@
         </div>
     </section>
 
-    <?php 
-    $partners = json_decode(get_theme_mod('_theme_partners_repeater'), true); 
-    if (!empty($partners)): 
-    ?>
-    <section class="partners-section">
-        <div class="partners-container">
-            <h3 class="section-title">Nuestros Aliados Estratégicos</h3>
-            
-            <div class="swiper partners-slider">
-                <div class="swiper-wrapper">
-                    <?php foreach ($partners as $partner): 
-                        $name = esc_attr($partner['title']); // Nombre empresa
-                        $logo_url = esc_url($partner['icon']); // URL Logo (usamos el campo icon)
-                        $link = esc_url($partner['url']); // Link web
-                    ?>
-                        <div class="swiper-slide partner-logo">
-                            <?php if($link): ?>
-                                <a href="<?php echo $link; ?>" target="_blank" rel="noopener">
-                                    <img src="<?php echo $logo_url; ?>" alt="<?php echo $name; ?>" title="<?php echo $name; ?>">
-                                </a>
-                            <?php else: ?>
-                                <img src="<?php echo $logo_url; ?>" alt="<?php echo $name; ?>" title="<?php echo $name; ?>">
-                            <?php endif; ?>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
-
-    <?php 
-    $brands = json_decode(get_theme_mod('_theme_brands_repeater'), true); 
-    if (!empty($brands)): 
-    ?>
-    <section class="brands-section">
-        <div class="brands-container">
-            <h3 class="section-title">Marcas que confían en nosotros</h3>
-            
-            <div class="brands-grid">
-                <?php foreach ($brands as $brand): 
-                    $name = esc_attr($brand['title']);
-                    $logo_url = esc_url($brand['icon']);
-                    $link = esc_url($brand['url']);
-                ?>
-                    <div class="brand-item">
-                        <?php if($link): ?>
-                            <a href="<?php echo $link; ?>" target="_blank" rel="noopener">
-                                <img src="<?php echo $logo_url; ?>" alt="<?php echo $name; ?>" title="<?php echo $name; ?>">
-                            </a>
-                        <?php else: ?>
-                            <img src="<?php echo $logo_url; ?>" alt="<?php echo $name; ?>" title="<?php echo $name; ?>">
-                        <?php endif; ?>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
-
 <?php endif; ?>
 
 <main class="content-area">

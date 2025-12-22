@@ -167,34 +167,6 @@ function _theme_customize_register($wp_customize)
         'input_labels' => ['title' => 'Texto del enlace', 'icon' => 'Clase Icono', 'url' => 'URL Destino']
     ]));
 
-    // 3. ALIADOS / PARTNERS
-    $wp_customize->add_section('_theme_partners_section', [
-        'title' => __('Aliados y Logos', '_theme'),
-        'priority' => 32,
-    ]);
-    $wp_customize->add_setting('_theme_partners_repeater', ['default' => '', 'sanitize_callback' => 'wp_kses_post']);
-    $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_partners_repeater', [
-        'label' => __('Logos del Slider (Aliados)', '_theme'),
-        'section' => '_theme_partners_section',
-        'button_text' => 'Añadir Aliado',
-        'mode' => 'image',
-        'input_labels' => ['title' => 'Nombre de la empresa', 'icon'  => 'Logo de la empresa', 'url'   => 'Sitio web (Opcional)']
-    ]));
-
-    // 4. MARCAS (GRID)
-    $wp_customize->add_section('_theme_brands_section', [
-        'title' => __('Marcas (Grilla)', '_theme'),
-        'priority' => 33,
-    ]);
-    $wp_customize->add_setting('_theme_brands_repeater', ['default' => '', 'sanitize_callback' => 'wp_kses_post']);
-    $wp_customize->add_control(new _Theme_Repeater_Control($wp_customize, '_theme_brands_repeater', [
-        'label' => __('Logos de Marcas', '_theme'),
-        'section' => '_theme_brands_section',
-        'button_text' => 'Añadir Marca',
-        'mode' => 'image',
-        'input_labels' => ['title' => 'Nombre de la marca', 'icon'  => 'Logo', 'url'   => 'Sitio web (Opcional)']
-    ]));
-
     // 5. CONFIGURACIÓN GENERAL (Aquí agregamos el botón del header)
     $wp_customize->add_section('_theme_general_section', array(
         'title' => __('Configuración General', '_theme'),

@@ -26,60 +26,6 @@ if (btnTop) {
     });
 }
 
-// =============== HERO SLIDER & PARTNERS SLIDER ===============
-document.addEventListener('DOMContentLoaded', function () {
-    
-    // 1. Slider Principal
-    const heroSliderEl = document.querySelector('.hero-slider');
-    if (heroSliderEl) {
-        new Swiper('.hero-slider', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        });
-    }
-
-    // 2. Slider de Aliados (NUEVO)
-    const partnersSliderEl = document.querySelector('.partners-slider');
-    if (partnersSliderEl) {
-        new Swiper('.partners-slider', {
-            loop: true,
-            slidesPerView: 2,
-            spaceBetween: 30,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
-            breakpoints: {
-                640: {
-                    slidesPerView: 3,
-                    spaceBetween: 40,
-                },
-                768: {
-                    slidesPerView: 4,
-                    spaceBetween: 50,
-                },
-                1024: {
-                    slidesPerView: 5,
-                    spaceBetween: 60,
-                },
-            },
-        });
-    }
-});
-
-// ... (Tu código anterior del menú hamburguesa y botón top) ...
-
 // =============== DROPDOWN REDES SOCIALES ===============
 const socialBtn = document.getElementById("socialToggleBtn");
 const socialDropdown = document.getElementById("socialDropdown");
