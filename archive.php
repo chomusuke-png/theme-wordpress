@@ -23,7 +23,7 @@
                             <?php if (has_post_thumbnail()): ?>
                                 <div class="thumb">
                                     <a href="<?php the_permalink(); ?>">
-                                        <img src="<?php the_post_thumbnail_url('medium'); ?>" alt="<?php the_title(); ?>">
+                                        <img src="<?php the_post_thumbnail_url('full'); ?>" alt="<?php the_title(); ?>">
                                     </a>
                                 </div>
                             <?php endif; ?>

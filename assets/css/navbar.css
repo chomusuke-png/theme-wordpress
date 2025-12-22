@@ -131,6 +131,7 @@
     text-transform: none; /* Normal en submenu */
     border-radius: 0;
     white-space: nowrap;
+    text-decoration: none;
 }
 
 .navbar .sub-menu li a:hover {

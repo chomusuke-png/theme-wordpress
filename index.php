@@ -13,20 +13,8 @@
         <section class="hero-slider swiper">
              <div class="swiper-wrapper">
                 <?php while ($slider_query->have_posts()) : $slider_query->the_post(); ?>
-                    <div class="swiper-slide" style="background-image: url('<?php echo get_the_post_thumbnail_url(null, 'large'); ?>');">
+                    <div class="swiper-slide" style="background-image: url('<?php echo get_the_post_thumbnail_url(null, 'full'); ?>');">
                         <div class="slide-content">
-                            <div class="chips-container" style="justify-content: center; margin-bottom: 15px;">
-                                <?php
-                                $categories = get_the_category();
-                                if (!empty($categories)) {
-                                    foreach ($categories as $cat) {
-                                        echo '<a href="' . esc_url(get_category_link($cat->term_id)) . '" class="chip chip-category">';
-                                        echo '<i class="fa-solid fa-folder-open"></i> ' . esc_html($cat->name);
-                                        echo '</a>';
-                                    }
-                                }
-                                ?>
-                            </div>
                             <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
                             <a href="<?php the_permalink(); ?>" class="btn-slide">Leer más</a>
                         </div>
@@ -64,7 +52,7 @@
                     if ($cat_post->have_posts()) {
                         while ($cat_post->have_posts()) {
                             $cat_post->the_post();
-                            $bg_image = get_the_post_thumbnail_url(null, 'medium');
+                            $bg_image = get_the_post_thumbnail_url(null, 'full');
                         }
                     }
                     wp_reset_postdata();
