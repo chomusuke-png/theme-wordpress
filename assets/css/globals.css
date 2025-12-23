@@ -31,7 +31,6 @@ body {
 
 .home-widget {
     background: #fff;
-    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.03); /* Sombra suave */
     border: 1px solid #eee;
@@ -39,16 +38,12 @@ body {
 }
 
 .home-widget:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(148, 126, 30, 0.1); /* Sombra mostaza muy sutil */
     border-color: #947e1e;
 }
 
 .home-widget-title {
     font-size: 1.2rem;
     color: #947e1e;
-    margin-top: 0;
-    margin-bottom: 20px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
