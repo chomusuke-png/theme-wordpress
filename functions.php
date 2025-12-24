@@ -1,45 +1,56 @@
 <?php
-
+/**
+ * Configuración principal del tema y registro de componentes.
+ */
 function theme_setup()
 {
     add_theme_support('custom-logo');
-
     add_theme_support('title-tag');
 
     register_nav_menus(array(
         'main_menu' => esc_html__('Menu', 'textdomain'),
     ));
 
+    // 1. Widgets Home Estándar (Cajas con estilo)
     register_sidebar(array(
-        'name'          => esc_html__('Home Widgets', 'textdomain'),
+        'name'          => esc_html__('Home Widgets (Estándar)', 'textdomain'),
         'id'            => 'home-widgets',
-        'description'   => esc_html__('Área de widgets debajo del slider en la página de inicio.', 'textdomain'),
+        'description'   => esc_html__('Widgets con fondo blanco, sombra y padding (Texto, Listas).', 'textdomain'),
         'before_widget' => '<div id="%1$s" class="home-widget %2$s">',
         'after_widget'  => '</div>',
         'before_title'  => '<h3 class="home-widget-title">',
         'after_title'   => '</h3>',
     ));
 
-    $footer_widgets_count = 3;
+    // 2. Widgets Home "Raw" (Sin estilos/padding)
+    register_sidebar(array(
+        'name'          => esc_html__('Home Widgets (Sin Estilos/Full)', 'textdomain'),
+        'id'            => 'home-widgets-raw',
+        'description'   => esc_html__('Área libre sin padding ni bordes. Ideal para scripts, iframes o diseños a medida.', 'textdomain'),
+        'before_widget' => '<div id="%1$s" class="home-widget-raw %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="home-widget-title">',
+        'after_title'   => '</h3>',
+    ));
 
-    for ($i = 1; $i <= $footer_widgets_count; $i++) {
-        register_sidebar(array(
-            'name' => esc_html__("Footer Widget $i", 'textdomain'),
-            'id' => "footer-widget-$i",
-            'description' => esc_html__("Área para el widget $i del footer.", 'textdomain'),
-            'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
-            'after_widget' => '</div>',
-            'before_title' => '<h4 class="footer-widget-title">',
-            'after_title' => '</h4>',
-        ));
-    }
+    // 3. Footer Widget (Único)
+    register_sidebar(array(
+        'name' => esc_html__("Footer Widget Principal", 'textdomain'),
+        'id' => "footer-widget-main",
+        'description' => esc_html__("Área única del footer centrada.", 'textdomain'),
+        'before_widget' => '<div id="%1$s" class="footer-widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<h4 class="footer-widget-title">',
+        'after_title' => '</h4>',
+    ));
 }
 add_action('after_setup_theme', 'theme_setup');
 
-
+/**
+ * Carga de scripts y estilos del tema.
+ */
 function theme_enqueue_assets()
 {
-    // Estilos externos
     wp_enqueue_style(
         'font-awesome-6',
         'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css',
@@ -47,7 +58,6 @@ function theme_enqueue_assets()
         '6.5.0'
     );
 
-    // Estilos locales
     wp_enqueue_style(
         'global-style',
         get_template_directory_uri() . '/assets/css/globals.css',
@@ -121,7 +131,6 @@ function theme_enqueue_assets()
         filemtime(get_template_directory() . '/assets/css/chips.css')
     );
     
-    // Scripts
     wp_enqueue_script(
         'swiper-js',
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
@@ -136,7 +145,7 @@ function theme_enqueue_assets()
         filemtime(get_template_directory() . '/assets/js/main.js'),
         true
     );
-    // Estilos para Archivos Y Búsqueda (Reutilizamos el diseño)
+
     if (is_archive() || is_search()) {
         wp_enqueue_style(
             'archive-style',
@@ -150,6 +159,12 @@ add_action('wp_enqueue_scripts', 'theme_enqueue_assets');
 
 require_once get_template_directory() . '/includes/customizer.php';
 
+/**
+ * Filtra la consulta de búsqueda para incluir solo posts y páginas.
+ *
+ * @param WP_Query $query La consulta principal de WordPress.
+ * @return WP_Query La consulta modificada.
+ */
 function filter_search_query($query) {
     if ($query->is_search && !is_admin()) {
         $query->set('post_type', array('post', 'page'));

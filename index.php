@@ -75,11 +75,19 @@
 <?php endif; ?>
 
 <main class="content-area">
+    
     <div class="home-widgets-container">
         <?php if (is_active_sidebar('home-widgets')) : ?>
             <?php dynamic_sidebar('home-widgets'); ?>
         <?php endif; ?>
     </div>
+
+    <div class="home-widgets-raw-container">
+        <?php if (is_active_sidebar('home-widgets-raw')) : ?>
+            <?php dynamic_sidebar('home-widgets-raw'); ?>
+        <?php endif; ?>
+    </div>
+
 </main>
 
 <?php get_footer(); ?>

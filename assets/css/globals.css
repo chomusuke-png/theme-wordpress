@@ -18,22 +18,23 @@ body {
 }
 
 /* ================================= */
-/*  WIDGETS DEL HOME (NUEVO)         */
+/* WIDGETS DEL HOME (ESTÁNDAR)      */
 /* ================================= */
 .home-widgets-container {
     max-width: 1200px;
     margin: 60px auto;
     padding: 0 20px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Rejilla responsive */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
 
 .home-widget {
     background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.03); /* Sombra suave */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     border: 1px solid #eee;
+    padding: 20px; /* Padding interno */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -49,4 +50,30 @@ body {
     letter-spacing: 0.5px;
     border-bottom: 2px solid rgba(148, 126, 30, 0.2);
     padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* ================================= */
+/* WIDGETS DEL HOME (RAW / SIN PAD) */
+/* ================================= */
+.home-widgets-raw-container {
+    max-width: 1200px;
+    margin: 0 auto 60px auto; /* Margen inferior */
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.home-widget-raw {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+/* Opcional: Ocultar título en widgets raw si se desea limpieza total */
+.home-widget-raw .home-widget-title {
+    display: none; 
 }
