@@ -33,7 +33,7 @@ function theme_setup()
         'after_title'   => '</h3>',
     ));
 
-    // 3. Footer Widget (Único)
+    // 3. Footer Widget
     register_sidebar(array(
         'name' => esc_html__("Footer Widget Principal", 'textdomain'),
         'id' => "footer-widget-main",
@@ -42,6 +42,17 @@ function theme_setup()
         'after_widget' => '</div>',
         'before_title' => '<h4 class="footer-widget-title">',
         'after_title' => '</h4>',
+    ));
+
+    // 4. Navbar Widget
+    register_sidebar(array(
+        'name'          => esc_html__('Navbar Widget (Menu Item)', 'textdomain'),
+        'id'            => 'navbar-widget',
+        'description'   => esc_html__('Se mostrará al final del menú principal. Ideal para selectores de idioma.', 'textdomain'),
+        'before_widget' => '<li id="%1$s" class="menu-item navbar-widget-item %2$s">', // Importante: es un <li>
+        'after_widget'  => '</li>',
+        'before_title'  => '<span class="hidden-title" style="display:none;">',
+        'after_title'   => '</span>',
     ));
 }
 add_action('after_setup_theme', 'theme_setup');

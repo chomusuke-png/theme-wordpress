@@ -140,6 +140,54 @@
     transform: translateX(5px); /* Pequeño desplazamiento */
 }
 
+/* =============================== */
+/*         NAVBAR WIDGET ITEM      */
+/* =============================== */
+
+/* El LI del widget */
+.navbar > ul > li.navbar-widget-item {
+    padding: 0 15px; /* Mismo padding lateral que los enlaces normales */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Evitar el borde/fondo hover en el widget si lo prefieres limpio */
+/* (Opcional: si quieres que se ilumine como los otros, borra esto) */
+.navbar > ul > li.navbar-widget-item:hover {
+    background-color: transparent;
+    border-bottom-color: transparent;
+}
+
+/* Ajustes genéricos para contenidos de widgets (como GTranslate) */
+.navbar-widget-item select {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #555;
+    background: #fafafa;
+    outline: none;
+    cursor: pointer;
+}
+
+.navbar-widget-item select:focus {
+    border-color: #947e1e;
+}
+
+/* Si el widget es una lista (algunos plugins de idiomas usan UL/LI) */
+.navbar-widget-item ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 5px;
+}
+
+.navbar-widget-item img {
+    vertical-align: middle; /* Para banderitas */
+}
+
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }

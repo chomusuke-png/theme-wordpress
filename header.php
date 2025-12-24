@@ -86,11 +86,18 @@
 
     <nav class="navbar">
         <?php
+        $navbar_widgets_html = '';
+        if (is_active_sidebar('navbar-widget')) {
+            ob_start();
+            dynamic_sidebar('navbar-widget');
+            $navbar_widgets_html = ob_get_clean();
+        }
+
         if (has_nav_menu('main_menu')) {
             wp_nav_menu([
                 "theme_location" => "main_menu",
                 "container" => "",
-                "items_wrap" => '<ul>%3$s</ul>'
+                "items_wrap" => '<ul>%3$s' . $navbar_widgets_html . '</ul>'
             ]);
         }
         ?>
